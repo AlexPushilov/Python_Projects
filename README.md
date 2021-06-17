@@ -7,4 +7,4 @@ When you use my repository you must read some rules:
 2) Don't leave comments that are not related to my codeDon't leave comments which. 
 3) Ask me for permission on my code
 
-Enjoy thr programming!
+Enjoy the programming!
