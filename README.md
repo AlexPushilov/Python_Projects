@@ -1,2 +1,3 @@
-# Python_Projects
-This is my repository where I will be store my little projects
+# Python_Func
+
+In this repository I will store my functions
