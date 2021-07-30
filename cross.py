@@ -1,7 +1,7 @@
 class Greet:
 	def hello():
 		print("Это игра крестики-нолики!")
-		print("Игроку будет предложено выбрать клетку в формате \"x y\", где x - это номер строки, а y - номер столбца.")
+		print("Игроку будет предложено выбрать клетку в формате \"x y\", где x - это ось Абсцис, а y - ось Ординат.")
 		print("Игра начинается!", end="\n\n")
 
 class Field:
@@ -28,14 +28,19 @@ class Field:
 				print(y, end=" ")
 			print()
 		print()
-
+	step = 0
 	def end():
-		step = 0
-		while step < 9:
+		while Field.step < 9:
+
 			a, b = 0, 2
 			count, count_2, count_3, count_a, count_b = 0, 0, 0, 0, 0
+
 			for x in Field.finish:
-				if sum(x) == 3 or not sum(x):
+				if sum(x) == 3:
+					Choice.win = True
+					return False
+				elif not sum(x):
+					Choice.win = False
 					return False
 
 				count += x[0]
@@ -47,18 +52,14 @@ class Field:
 				a += 1
 				b -= 1
 
-			if count == 3 or not count:
+			if count == 3 or count_2 == 3 or count_3 == 3 or count_a == 3 or count_b == 3:
+				Choice.win = True
 				return False
-			if count_2 == 3 or not count_2:
-				return False
-			if count_3 == 3 or not count_3:
-				return False
-			if count_a == 3 or not count_a:
-				return False
-			if count_b == 3 or not count_b:
+			elif not count or not count_2 or not count_3 or not count_a or not count_b:
+				Choice.win = False
 				return False
 
-			step += 1
+			Field.step += 1
 
 			return True
 		else:
@@ -76,6 +77,7 @@ class Choice:
 			print()
 		Choice.count += 1
 		return a, b, Choice.count % 2
+
 
 class Update_field:
 	def update(x, y, circle):
@@ -95,4 +97,14 @@ class Main:
 		Update_field.update(a, b, c)
 	else:
 		Field.show()
-		print("Игра окончена!")
+		if Field.step >= 9:
+			print("Игра окончена!")
+			print("Ничья!")
+		elif Choice.win:
+			print("Игра окончена!")
+			print("Игрок №1 победил!")
+		elif not Choice.win:
+			print("Игра окончена!")
+			print("Игрок №2 победил!")
+		else:
+			print("Игра оконена!")
