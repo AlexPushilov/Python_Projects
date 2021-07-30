@@ -82,11 +82,11 @@ class Choice:
 class Update_field:
 	def update(x, y, circle):
 		if not circle:
-			Field.main[x][y] = "X"
-			Field.finish[x - 1][y - 1] = 1
+			Field.main[y][x] = "X"
+			Field.finish[y - 1][x - 1] = 1
 		else:
-			Field.main[x][y] = "O"
-			Field.finish[x - 1][y - 1] = 0
+			Field.main[y][x] = "O"
+			Field.finish[y - 1][x - 1] = 0
 
 
 class Main:
